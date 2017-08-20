@@ -14,68 +14,101 @@
         font-family: 'Roboto', 'Noto', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
+      div {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        display:inline-block;
+        margin:10px;
+        width:300px;
+        height:250px;
+      }
     </style>
-    <paper-item style="background-color: rgba(255, 255, 255, 0.85);">
-      <paper-icon-item>
-        <text-avatar item-icon name="[[item.primaryName]]"></text-avatar>
-      </paper-icon-item>
-      <paper-item-body style="color:#333" two-line>
-        <div>[[item.primaryName]]</div>
-        <template is="dom-if" if="[[item.description]]">
-          <div secondary>[[item.description]]</div>
-        </template>
-      </paper-item-body>
-    </paper-item>
-    <table style="width:100%;margin-top:5px">
-      <tr>
-        <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
-           <div style="line-height: 1;font-size:4em;font-weight:800">[[item.callsQueueing]]</div>
-        </td>
-        <template is="dom-if" if="[[item.longestWaiting]]">
-          <td style="vertical-align: bottom; padding-right:15px; text-align:right">
-            <count-up style="font-size:32px" from="[[item.longestWaiting]]"></count-up>
+    <div style$="background-color:[[bg)]];color:[[fg]]">
+      <paper-item style="background-color: rgba(255, 255, 255, 0.85);">
+        <paper-icon-item>
+          <text-avatar item-icon name="[[item.primaryName]]"></text-avatar>
+        </paper-icon-item>
+        <paper-item-body style="color:#333" two-line>
+          <div>[[item.primaryName]]</div>
+          <template is="dom-if" if="[[item.description]]">
+            <div secondary>[[item.description]]</div>
+          </template>
+        </paper-item-body>
+      </paper-item>
+      <table style="width:100%;margin-top:5px">
+        <tr>
+          <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
+             <div style="line-height: 1;font-size:4em;font-weight:800">[[item.callsQueueing]]</div>
           </td>
-        </template>
-        <template is="dom-if" if="[[!item.longestWaiting]]">
-          <td style="vertical-align: bottom;padding-right:15px ;text-align:right">
-            No Waiting
+          <template is="dom-if" if="[[item.longestWaiting]]">
+            <td style="vertical-align: bottom; padding-right:15px; text-align:right">
+              <count-up style="font-size:32px" from="[[item.longestWaiting]]"></count-up>
+            </td>
+          </template>
+          <template is="dom-if" if="[[!item.longestWaiting]]">
+            <td style="vertical-align: bottom;padding-right:15px ;text-align:right">
+              No Waiting
+            </td>
+          </template>
+        </tr>
+        <tr>
+          <td style="padding-left:15px;text-align:left"> 
+            <div>calls queueing</div>
           </td>
-        </template>
-      </tr>
-      <tr>
-        <td style="padding-left:15px;text-align:left"> 
-          <div>calls queueing</div>
-        </td>
-        <template is="dom-if" if="[[item.longestWaiting]]">
-          <td style="padding-right:15px;text-align:right">
-            <div>longest wait</div>
-          </td>
-        </template>
-      </tr>
-    </table>
-    <table cellpadding="4" style="display:block;width: 100%;
-      height: 70px; background-color: rgba(255, 255, 255, 0.85);
-      position: absolute;top: 180px;text-align: left;
-      color: #383838;bottom: 0;"><tbody style="display: block;width: 100%">
-      <tr style="font-size: .6em;">
-        <th colspan="2">Answered</th>
-        <th>Abandoned</th>
-        <th>Calls per hour</th>
-      </tr>
-      <tr>
-        <td style="color:#2828bd">95%</td>
-        <td style="color:#2828bd">308 <span style="font-size:.6em">calls</span></td> 
-        <td style="color:red"    >16 <span style="font-size:.6em">calls</span></td>
-        <td rowspan="2"><img style="max-width:110px" src$="[[background]]"/></td>
-      </tr>
-      <tr style="font-size: .6em">
-        <td colspan="3">last 24 hours</td>
-      </tr>
-    </tbody></table>
+          <template is="dom-if" if="[[item.longestWaiting]]">
+            <td style="padding-right:15px;text-align:right">
+              <div>longest wait</div>
+            </td>
+          </template>
+        </tr>
+      </table>
+      <table cellpadding="4" style="display:block;width: 100%;
+        height: 70px; background-color: rgba(255, 255, 255, 0.85);
+        position: absolute;top: 180px;text-align: left;
+        color: #383838;bottom: 0;"><tbody style="display: block;width: 100%">
+        <tr style="font-size: .6em;">
+          <th colspan="2">Answered</th>
+          <th>Abandoned</th>
+          <th>Calls per hour</th>
+        </tr>
+        <tr>
+          <td style="color:#2828bd">95%</td>
+          <td style="color:#2828bd">308 <span style="font-size:.6em">calls</span></td> 
+          <td style="color:red"    >16 <span style="font-size:.6em">calls</span></td>
+          <td rowspan="2"><img style="max-width:110px" src$="[[background]]"/></td>
+        </tr>
+        <tr style="font-size: .6em">
+          <td colspan="3">last 24 hours</td>
+        </tr>
+      </tbody></table>
+    </div>
   </template>
 </dom-module>
 <script>
   Polymer({
     is: "dashboard-tile",
+    properties:{
+      bg:{
+        computed:"findBg(item.data,item.alerts)",
+      },
+      fg:{
+        computed:"getFg(bg)",
+      },
+    },
+    findBg: function(data, alerts){
+      return "#00aa00"
+    },
+    getFg: function(bg){
+      var c = bg.substring(1);     // strip #
+      var rgb = parseInt(c, 16);   // convert rrggbb to decimal
+      var r = (rgb >> 16) & 0xff;  // extract red
+      var g = (rgb >>  8) & 0xff;  // extract green
+      var b = (rgb >>  0) & 0xff;  // extract blue
+      var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+      if (luma > 128) {
+        return "#000"
+      } else {
+        return "#FFF"
+      }
+    },
   })
 </script>
