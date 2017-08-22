@@ -98,6 +98,18 @@
       },
     },
     findBg: function(data, alerts){
+      var inState
+      for (var test in alerts) {
+        if (data.hasOwnProperty(test)){
+          for (var state in alerts[test]) {
+          if (data[test] == alerts[test][state]) {
+            inState = state
+          } else if (+data[test] > +alerts[test][state]) {
+            inState = state
+          }
+        }
+      }
+      console.log(state)
       return "#00cc00"
     },
     getFg: function(bg){
