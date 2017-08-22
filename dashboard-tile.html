@@ -102,10 +102,11 @@
       for (var test in alerts) {
         if (data.hasOwnProperty(test)){
           for (var state in alerts[test]) {
-          if (data[test] == alerts[test][state]) {
-            inState = state
-          } else if (+data[test] > +alerts[test][state]) {
-            inState = state
+            if (data[test] == alerts[test][state]) {
+              inState = state
+            } else if (+data[test] > +alerts[test][state]) {
+              inState = state
+            }
           }
         }
       }
