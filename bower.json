@@ -10,6 +10,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#~1.9.3",
     "text-avatar": "marcus7777/text-avatar#~1.0.1",
+    "count-up": "marcus7777/count-up",
     "paper-item": "polymerelements/paper-item#~1.0.7"
   },
   "devDependencies": {
