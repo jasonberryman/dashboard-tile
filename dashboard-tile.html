@@ -1,6 +1,7 @@
 <link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../paper-item/paper-item-body.html">
 <link rel="import" href="../paper-item/paper-icon-item.html">
+<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../text-avatar/text-avatar.html">
 <link rel="import" href="../polymer/polymer.html">
 <!--
@@ -14,15 +15,14 @@
         font-family: 'Roboto', 'Noto', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
-      :host > div {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      :host > paper-material {
         display:inline-block;
         margin:10px;
         width:300px;
         height:250px;
       }
     </style>
-    <div style$="background-color:[[bg]];color:[[fg]]">
+    <paper-material style$="background-color:[[bg]];color:[[fg]]">
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);">
         <paper-icon-item>
           <text-avatar item-icon name="[[item.primaryName]]"></text-avatar>
@@ -80,7 +80,7 @@
           <td colspan="3">last 24 hours</td>
         </tr>
       </tbody></table>
-    </div>
+    </paper-material>
   </template>
 </dom-module>
 <script>
