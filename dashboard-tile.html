@@ -112,7 +112,10 @@
                 }
                 return 0
               })
-              inState[state] = alerts[test][state]
+              if (!inState[test]) {
+                inState[test] = {}
+              }
+              inState[test][state] = alerts[test][state]
             }
           }
         }
