@@ -103,15 +103,6 @@
         if (data.hasOwnProperty(test)){
           for (var state in alerts[test]) {
             if (data[test] == alerts[test][state] || (+data[test] > +alerts[test][state])) {
-              var sorted = Object.keys(alerts[test][state]).sort(function(a,b){
-                if (alerts[test][a] > alerts[test][b]) {
-                  return 1
-                }
-                if (alerts[test][a] < alerts[test][b]) {
-                  return -1
-                }
-                return 0
-              })
               if (!inState[test]) {
                 inState[test] = {}
               }
