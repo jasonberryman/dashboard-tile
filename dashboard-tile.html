@@ -40,7 +40,7 @@
           </td>
           <template is="dom-if" if="[[item.data.longestWaiting]]">
             <td style="vertical-align: bottom; padding-right:15px; text-align:right">
-              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]"></count-up>
+              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" go="{{go}}" goOn="[[item.alert.longestWaiting]]"></count-up>
             </td>
           </template>
           <template is="dom-if" if="[[!item.data.longestWaiting]]">
