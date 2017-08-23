@@ -22,7 +22,7 @@
         height:250px;
       }
     </style>
-    <paper-material style$="background-color:[[bg]];color:[[fg]]">
+    <paper-material>
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
         <paper-icon-item>
           <text-avatar item-icon name="[[item.data.primaryName]]">[[item.data.primaryName.0]]</text-avatar>
@@ -34,7 +34,7 @@
           </template>
         </paper-item-body>
       </paper-item>
-      <table style="width:100%;margin-top:5px">
+      <table style$="background-color:[[bg]];color:[[fg]];width:100%;margin-top:5px">
         <tr>
           <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
              <div style="line-height: 1;font-size:4em;font-weight:800">[[item.data.callsQueueing]]</div>
