@@ -127,7 +127,13 @@
       
       this.class = inState
       if (inState) {
-        if (inState.indexOf(""))
+        if (inState.indexOf("warm")) {
+          return "#ffbf00"
+        } else if (inState.indexOf("alert")) {
+          return "#ff0000"
+        } else {
+          return "#f4ff3f"
+        }
       } else {
         return "#10b918"
       }
