@@ -113,8 +113,8 @@
       
       var inState = Object.keys(inStates).reduce(function(a, test) {
         var topAlert = Object.keys(inStates[test]).reduce(function(top, state) {
-          if (!top || +inStates[test][state] > +inStates[test][topAlert]) {
-            topAlert = state
+          if (!top || +inStates[test][state] > +inStates[test][top]) {
+            top = state
           }
           return top
         }, "")
