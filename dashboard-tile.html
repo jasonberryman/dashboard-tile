@@ -127,9 +127,9 @@
       
       this.class = inState
       if (inState) {
-        if (inState.indexOf("warm")) {
+        if (inState.indexOf("warm") !== false) {
           return "#ffbf00"
-        } else if (inState.indexOf("alert")) {
+        } else if (inState.indexOf("alert") !== false) {
           return "#ff0000"
         } else {
           return "#f4ff3f"
