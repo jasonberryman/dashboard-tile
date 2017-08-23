@@ -23,7 +23,7 @@
     </style>
     <paper-material elevation="1" style="background-color:#FFF" class$="[[class]]">
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
-        <paper-icon-item style="padding:0px">
+        <paper-icon-item style="height:57px;padding:0px">
           <text-avatar item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
         </paper-icon-item>
         <paper-item-body style="color:#333" two-line>
@@ -86,7 +86,7 @@
     properties:{
       bg:{
         computed: "findBg(item.data,item.alerts,go)",
-        value: "#00cc00"
+        value: "#10b918",
       },
       fg:{
         computed: "getFg(bg)",
@@ -126,8 +126,11 @@
       }, []).join(" ")
       
       this.class = inState
-      
-      return "#00FF00"
+      if (inState) {
+        if (inState.indexOf(""))
+      } else {
+        return "#10b918"
+      }
     },
     getFg: function(bg){
       var c = bg.substring(1);     // strip #
