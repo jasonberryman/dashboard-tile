@@ -103,11 +103,14 @@
               if (!inState[test]) {
                 inState[test] = {}
               }
-              inState[test][state] = alerts[test][state]
+              if (!inState[test][state]) {
+                inState[test][state] = alerts[test][state]
+              }
             }
           }
         }
       }
+      
       console.log(inState)
       
       return "#00cc00"
