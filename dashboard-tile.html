@@ -95,23 +95,36 @@
       },
     },
     findBg: function(data, alerts){
-      var inState = {}
+      var inStates = {}
       for (var test in alerts) {
         if (data.hasOwnProperty(test)){
           for (var state in alerts[test]) {
             if (data[test] == alerts[test][state] || (+data[test] > +alerts[test][state])) {
-              if (!inState[test]) {
-                inState[test] = {}
+              if (!inStates[test]) {
+                inStates[test] = {}
               }
-              if (!inState[test][state]) {
-                inState[test][state] = alerts[test][state]
+              if (!inStates[test][state]) {
+                inStates[test][state] = alerts[test][state]
               }
             }
           }
         }
       }
       
-      console.log(inState)
+      var inState = Object.keys(inStates).reduce(function(a, test) {
+        var topAlert = Object.keys(inStates[test]).reduce(function(top, state) {
+          if (!top || +inStates[test][state] > +inStates[test][topAlert]) {
+            topAlert = state
+          }
+          return top
+        }, "")
+        if (topAlert) {
+          a.push[topAlert]
+        }
+        return a
+      }, []).join(" ")
+      
+      this.class = inState
       
       return "#00cc00"
     },
