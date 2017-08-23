@@ -98,7 +98,7 @@
       },
     },
     findBg: function(data, alerts){
-      var inState = []
+      var inState = {}
       for (var test in alerts) {
         if (data.hasOwnProperty(test)){
           var sorted = Object.keys(alerts[test]).sort(function(a,b){
@@ -110,12 +110,9 @@
             }
             return 0
           })
-          for (var state in alerts[test]) {
+          for (var state in sorted) {
             if (data[test] == alerts[test][state] || (+data[test] > +alerts[test][state])) {
-              inState.push({
-                state: state, 
-                value: alerts[test][state],
-              })
+              inState[state] = alerts[test][state]
             }
           }
         }
