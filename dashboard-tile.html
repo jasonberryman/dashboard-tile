@@ -40,7 +40,7 @@
           </td>
           <template is="dom-if" if="[[item.data.longestWaiting]]">
             <td style="vertical-align: bottom; padding-right:15px; text-align:right">
-              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" go="{{go}}" goOn="[[item.alerts.longestWaiting]]"></count-up>
+              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" go="{{go}}" go-on="[[item.alerts.longestWaiting]]"></count-up>
             </td>
           </template>
           <template is="dom-if" if="[[!item.data.longestWaiting]]">
@@ -84,6 +84,7 @@
   Polymer({
     is: "dashboard-tile",
     properties:{
+      
       bg:{
         computed:"findBg(item.data,item.alerts,go)",
       },
