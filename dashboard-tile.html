@@ -110,9 +110,9 @@
         if (data.hasOwnProperty(test)){
           for (var state in alerts[test]) {
             if (
-                 (test === "longestWaiting" && longestWaitingSec > +alerts[test][state]) 
+                 (test === "longestWaiting" && longestWaitingSec >= +alerts[test][state]) 
               ||
-                 (test !== "longestWaiting" && (data[test] == alerts[test][state] || (+data[test] > +alerts[test][state])))
+                 (test !== "longestWaiting" && (data[test] == alerts[test][state] || (+data[test] >= +alerts[test][state])))
                ) {
               if (!inStates[test]) {
                 inStates[test] = {}
