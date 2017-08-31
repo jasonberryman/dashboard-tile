@@ -47,12 +47,12 @@
           <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
              <div style="line-height: 1;font-size:4em;font-weight:800">[[item.data.callsQueueing]]</div>
           </td>
-          <template is="dom-if" if="[[item.data.longestWaiting]]">
+          <template is="dom-if" if="[[data.longestWaiting]]">
             <td style="vertical-align: bottom; padding-right:15px; text-align:right">
-              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" count="{{longestWaitingSec}}" ></count-up>
+              <count-up style="font-size:32px" from="[[data.longestWaiting]]" count="{{longestWaitingSec}}" ></count-up>
             </td>
           </template>
-          <template is="dom-if" if="[[!item.data.longestWaiting]]">
+          <template is="dom-if" if="[[!data.longestWaiting]]">
             <td style="font-size:32px;vertical-align: bottom;padding-right:15px ;text-align:right">
               0s
             </td>
@@ -91,8 +91,11 @@
   Polymer({
     is: "dashboard-tile",
     properties:{
+      data: {
+        computed: "mergeData(item.data)",
+      },
       bg:{
-        computed: "findBg(item.data,item.alerts,longestWaitingSec)",
+        computed: "findBg(data,item.alerts,longestWaitingSec)",
         value: "#10b918",
       },
       fg:{
@@ -101,6 +104,9 @@
       background:{
         value: "https://firebasestorage.googleapis.com/v0/b/dolphin-one-fstest2.appspot.com/o/blue%20line.png?alt=media&token=60c3eb2b-ca67-4d1a-8a5b-02e83d170655",
       },
+    },
+    mergeData(data) {
+      console.log(data)
     },
     findBg: function(data, alerts, longestWaitingSec){
       var inStates = {}
