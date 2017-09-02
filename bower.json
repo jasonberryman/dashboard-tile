@@ -12,7 +12,8 @@
     "text-avatar": "marcus7777/text-avatar#~1.0.1",
     "count-up": "marcus7777/count-up",
     "paper-material": "PolymerElements/paper-material#~1.0.7",
-    "paper-item": "polymerelements/paper-item#~1.2.2"
+    "paper-item": "polymerelements/paper-item#~1.2.2",
+    "contextual-menu": "marcus7777/contextual-menu"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
