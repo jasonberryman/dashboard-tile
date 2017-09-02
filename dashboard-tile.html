@@ -47,12 +47,12 @@
           <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
              <div style="line-height: 1;font-size:4em;font-weight:800">[[item.data.callsQueueing]]</div>
           </td>
-          <template is="dom-if" if="[[data.longestWaiting]]">
+          <template is="dom-if" if="[[item.data.longestWaiting]]">
             <td style="vertical-align: bottom; padding-right:15px; text-align:right">
-              <count-up style="font-size:32px" from="[[data.longestWaiting]]" count="{{longestWaitingSec}}" ></count-up>
+              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" count="{{longestWaitingSec}}" ></count-up>
             </td>
           </template>
-          <template is="dom-if" if="[[!data.longestWaiting]]">
+          <template is="dom-if" if="[[!item.data.longestWaiting]]">
             <td style="font-size:32px;vertical-align: bottom;padding-right:15px ;text-align:right">
               0s
             </td>
@@ -78,7 +78,7 @@
           <td style="color:#2828bd">95%</td>
           <td style="color:#2828bd">308 <span style="font-size:.6em">calls</span></td> 
           <td style="color:red"    >16 <span style="font-size:.6em">calls</span></td>
-          <td rowspan="2"><img style="max-width:110px" src$="[[background]]"/></td>
+          <td rowspan="2"><img style="max-width:110px" src$="[[svg]]"/></td>
         </tr>
         <tr style="font-size: .6em">
           <td colspan="3">last 24 hours</td>
@@ -98,7 +98,7 @@
       fg:{
         computed: "getFg(bg)",
       },
-      background:{
+      svg:{
         value: "https://firebasestorage.googleapis.com/v0/b/dolphin-one-fstest2.appspot.com/o/blue%20line.png?alt=media&token=60c3eb2b-ca67-4d1a-8a5b-02e83d170655",
       },
     },
