@@ -30,66 +30,71 @@
         }
       } 
     </style>
-    <paper-material elevation="5" style="background-color:#FFF">
-      <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
-        <paper-icon-item style="height:57px;padding:0px">
-          <template is="dom-if" if="[[item.data.photoUrl]]">
-            <img item-icon style="width:36px;margin:6px;border-radius:50%" src="[[item.data.photoUrl]]" />
-          </template>
-          <template is="dom-if" if="[[!item.data.photoUrl]]">
-            <text-avatar item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
-          </template>
-        </paper-icon-item>
-        <paper-item-body style="color:#333" two-line>
-          <div>[[item.data.displayName]]</div>
-          <template is="dom-if" if="[[item.data.description]]">
-            <div secondary>[[item.data.description]]</div>
-          </template>
-        </paper-item-body>
-      </paper-item>
-      <table class$="[[class]]" style$="background-color:[[bg]];color:[[fg]];width: 100%;height: 128px">
-        <tr>
-          <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
-             <div style="line-height: 1;font-size:4em;font-weight:800">[[item.data.callsQueueing]]</div>
-          </td>
-          <template is="dom-if" if="[[item.data.longestWaiting]]">
-            <td style="vertical-align: bottom; padding-right:15px; text-align:right">
-              <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" count="{{longestWaitingSec}}" ></count-up>
+    <contextual-menu>
+      <paper-material elevation="5" style="background-color:#FFF">
+        <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
+          <paper-icon-item style="height:57px;padding:0px">
+            <template is="dom-if" if="[[item.data.photoUrl]]">
+              <img item-icon style="width:36px;margin:6px;border-radius:50%" src="[[item.data.photoUrl]]" />
+            </template>
+            <template is="dom-if" if="[[!item.data.photoUrl]]">
+              <text-avatar item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
+            </template>
+          </paper-icon-item>
+          <paper-item-body style="color:#333" two-line>
+            <div>[[item.data.displayName]]</div>
+            <template is="dom-if" if="[[item.data.description]]">
+              <div secondary>[[item.data.description]]</div>
+            </template>
+          </paper-item-body>
+        </paper-item>
+        <table class$="[[class]]" style$="background-color:[[bg]];color:[[fg]];width: 100%;height: 128px">
+          <tr>
+            <td style="vertical-align: bottom;padding-left:15px ;text-align: left">
+               <div style="line-height: 1;font-size:4em;font-weight:800">[[item.data.callsQueueing]]</div>
             </td>
-          </template>
-          <template is="dom-if" if="[[!item.data.longestWaiting]]">
-            <td style="font-size:32px;vertical-align: bottom;padding-right:15px ;text-align:right">
-              0s
+            <template is="dom-if" if="[[item.data.longestWaiting]]">
+              <td style="vertical-align: bottom; padding-right:15px; text-align:right">
+                <count-up style="font-size:32px" from="[[item.data.longestWaiting]]" count="{{longestWaitingSec}}" ></count-up>
+              </td>
+            </template>
+            <template is="dom-if" if="[[!item.data.longestWaiting]]">
+              <td style="font-size:32px;vertical-align: bottom;padding-right:15px ;text-align:right">
+                0s
+              </td>
+            </template>
+          </tr>
+          <tr>
+            <td style="padding-left:15px;text-align:left"> 
+              <div>calls queueing</div>
             </td>
-          </template>
-        </tr>
-        <tr>
-          <td style="padding-left:15px;text-align:left"> 
-            <div>calls queueing</div>
-          </td>
-          <td style="padding-right:15px;text-align:right">
-            <div>longest wait</div>
-          </td>
-        </tr>
-      </table>
-      <table cellpadding="4" style="display: block;width: 100%;height: 70px; background-color: rgba(255, 255, 255, 0.85);
-        text-align:left;color:#383838;bottom:0"><tbody style="display: block;width: 100%">
-        <tr style="font-size: .6em;">
-          <th colspan="2">Answered</th>
-          <th>Abandoned</th>
-          <th>Calls per hour</th>
-        </tr>
-        <tr>
-          <td style="color:#2828bd">95%</td>
-          <td style="color:#2828bd">308 <span style="font-size:.6em">calls</span></td> 
-          <td style="color:red"    >16 <span style="font-size:.6em">calls</span></td>
-          <td rowspan="2"><img style="max-width:110px" src$="[[svg]]"/></td>
-        </tr>
-        <tr style="font-size: .6em">
-          <td colspan="3">last 24 hours</td>
-        </tr>
-      </tbody></table>
-    </paper-material>
+            <td style="padding-right:15px;text-align:right">
+              <div>longest wait</div>
+            </td>
+          </tr>
+        </table>
+        <table cellpadding="4" style="display: block;width: 100%;height: 70px; background-color: rgba(255, 255, 255, 0.85);
+          text-align:left;color:#383838;bottom:0"><tbody style="display: block;width: 100%">
+          <tr style="font-size: .6em;">
+            <th colspan="2">Answered</th>
+            <th>Abandoned</th>
+            <th>Calls per hour</th>
+          </tr>
+          <tr>
+            <td style="color:#2828bd">95%</td>
+            <td style="color:#2828bd">308 <span style="font-size:.6em">calls</span></td> 
+            <td style="color:red"    >16 <span style="font-size:.6em">calls</span></td>
+            <td rowspan="2"><img style="max-width:110px" src$="[[svg]]"/></td>
+          </tr>
+          <tr style="font-size: .6em">
+            <td colspan="3">last 24 hours</td>
+          </tr>
+        </tbody></table>
+      </paper-material>
+      <div slot="menu" on-tap="openEdit">
+        edit
+      </div>
+    </contextual-menu>
   </template>
 </dom-module>
 <script>
@@ -106,6 +111,9 @@
       svg:{
         value: "https://firebasestorage.googleapis.com/v0/b/dolphin-one-fstest2.appspot.com/o/blue%20line.png?alt=media&token=60c3eb2b-ca67-4d1a-8a5b-02e83d170655",
       },
+    },
+    openEdit: function() {
+      debugger
     },
     findBg: function(data, alerts, longestWaitingSec){
       var inStates = {}
