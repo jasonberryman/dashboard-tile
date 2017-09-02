@@ -13,7 +13,9 @@
     "count-up": "marcus7777/count-up",
     "paper-material": "PolymerElements/paper-material#~1.0.7",
     "paper-item": "polymerelements/paper-item#~1.2.2",
-    "contextual-menu": "marcus7777/contextual-menu"
+    "paper-input": "PolymerElements/paper-input#~1.1.24",
+    "paper-button": "Polymer/paper-button#~1.0.15",
+    "paper-dialog": "PolymerElements/paper-dialog#^1.0.0"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
