@@ -96,11 +96,13 @@
       </tbody></table>
     </paper-material>
     <paper-dialog>
-      <input-image set-width="36" width="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
-      <paper-input value="{{item.data.displayName}}"></paper-input>
-      <paper-textarea value="{{item.data.description}}"></paper-textarea>
-      <div class="buttons">
-        <paper-button dialog-confirm autofocus>done</paper-button>
+      <div style="margin:10px">
+        <input-image set-width="36" width="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
+        <paper-input value="{{item.data.displayName}}"></paper-input>
+        <paper-textarea value="{{item.data.description}}"></paper-textarea>
+        <div class="buttons">
+          <paper-button dialog-confirm autofocus>done</paper-button>
+        </div>
       </div>
     </paper-dialog>
   </template>
