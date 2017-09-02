@@ -33,7 +33,12 @@
     <paper-material elevation="5" style="background-color:#FFF">
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
         <paper-icon-item style="height:57px;padding:0px">
-          <text-avatar item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
+          <template is="dom-if" if="[[item.photoUrl]]">
+            <img style="width:36px;margin:6px;border-radius:50%" src="[[item.photoUrl]]" />
+          </template>
+          <template is="dom-if" if="[[!item.photoUrl]]">
+            <text-avatar item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
+          </template>
         </paper-icon-item>
         <paper-item-body style="color:#333" two-line>
           <div>[[item.data.displayName]]</div>
