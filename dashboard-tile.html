@@ -6,6 +6,8 @@
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-input/paper-textarea.html">
+<link rel="import" href="../input-image/input-image.html">
 <link rel="import" href="../polymer/polymer.html">
 <!--
   `<dashboard-tile></dashboard-tile>`   
@@ -94,7 +96,9 @@
       </tbody></table>
     </paper-material>
     <paper-dialog>
+      <input-image width="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
       <paper-input value="{{item.data.displayName}}"></paper-input>
+      <paper-textarea value="{{item.data.description}}"></paper-textarea>
       <div class="buttons">
         <paper-button dialog-confirm autofocus>done</paper-button>
       </div>
