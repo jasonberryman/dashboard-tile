@@ -91,9 +91,6 @@
   Polymer({
     is: "dashboard-tile",
     properties:{
-      data: {
-        computed: "mergeData(item.data, item.alerts, item.data.*)",
-      },
       bg:{
         computed: "findBg(data,item.alerts,longestWaitingSec)",
         value: "#10b918",
@@ -104,25 +101,6 @@
       background:{
         value: "https://firebasestorage.googleapis.com/v0/b/dolphin-one-fstest2.appspot.com/o/blue%20line.png?alt=media&token=60c3eb2b-ca67-4d1a-8a5b-02e83d170655",
       },
-    },
-    mergeData(data, alerts) {
-      var output = {}
-      for (var lert in alerts) {
-        for (var theSet in data) {
-          if (data[theSet].hasOwnProperty(lert)) { 
-            if (!output[lert]) {
-              output[lert] = data[theSet][lert]
-            } else if ( output[lert] < +data[theSet][lert] && +data[theSet][lert] < (24 * 60 * 60 * 1000) ) { // prefer bigger, not date
-              output[lert] = data[theSet][lert]
-            } else if ( output[lert] > +data[theSet][lert] && +data[theSet][lert] > (24 * 60 * 60 * 1000) ) { // prefer earlier, date
-              output[lert] = data[theSet][lert]
-            } else if (+data[theSet][lert] === 0) {
-              output[lert] = data[theSet][lert]
-            }
-          }
-        }
-      }
-      return output
     },
     findBg: function(data, alerts, longestWaitingSec){
       var inStates = {}
