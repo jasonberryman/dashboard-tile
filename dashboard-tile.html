@@ -101,7 +101,7 @@
         <paper-input value="{{item.data.displayName}}"></paper-input>
         <paper-textarea value="{{item.data.description}}"></paper-textarea>
         <div class="buttons">
-          <paper-button dialog-confirm autofocus>done</paper-button>
+          <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
         </div>
       </div>
     </paper-dialog>
@@ -124,6 +124,15 @@
     },
     openEdit: function() {
       this.$$("paper-dialog").open()
+    },
+    saveEdited:function() {
+      this.dashRef.update({
+        isCapital: true
+      }).then(function() {
+        console.log("updated!")
+      }).catch(function(error) {
+        console.error("Error updating: ", error)
+      })
     },
     findBg: function(data, alerts, longestWaitingSec){
       var inStates = {}
