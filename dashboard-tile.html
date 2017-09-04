@@ -98,8 +98,8 @@
     <paper-dialog>
       <div style="margin:10px">
         <input-image max-width="36" max-height="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
-        <paper-input value="{{item.data.displayName}}"></paper-input>
-        <paper-textarea value="{{item.data.description}}"></paper-textarea>
+        <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
+        <paper-input value="{{item.data.description}}"></paper-input>
         <div class="buttons">
           <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
         </div>
@@ -126,10 +126,17 @@
       this.$$("paper-dialog").open()
     },
     saveEdited:function() {
+      var that = this
+      var photoUrl = this.item.data.photoUrl
+      var displayName = this.item.data.displayName
+      var description = this.item.data.description
+      
       this.dashRef.update({
-        isCapital: true
+        photoUrl: photoUrl,
+        displayName: displayName,
+        description: description,
       }).then(function() {
-        console.log("updated!")
+        that.updated = true
       }).catch(function(error) {
         console.error("Error updating: ", error)
       })
