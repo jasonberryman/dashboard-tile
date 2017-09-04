@@ -112,7 +112,7 @@
     is: "dashboard-tile",
     properties:{
       bg:{
-        computed: "findBg(data,item.alerts,longestWaitingSec)",
+        computed: "findBg(item.data,item.alerts,longestWaitingSec)",
         value: "#10b918",
       },
       fg:{
