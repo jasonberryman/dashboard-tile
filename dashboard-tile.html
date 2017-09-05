@@ -121,6 +121,9 @@
       svg:{
         value: "https://firebasestorage.googleapis.com/v0/b/dolphin-one-fstest2.appspot.com/o/blue%20line.png?alt=media&token=60c3eb2b-ca67-4d1a-8a5b-02e83d170655",
       },
+      _item:{
+        computed: "getdata(dashRef)"
+      },
     },
     mergeData: function(data) {
       var output = {}
@@ -266,7 +269,7 @@
             if (doc) {
               theDashData[directorySource[dash]] = doc.data()
               var mergedData = that.mergeData(theDashData)
-              that.allDashs[dashKey] = {
+              that.item = {
                 data: mergedData, 
                 alerts: alerts,
               }
