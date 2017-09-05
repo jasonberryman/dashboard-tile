@@ -269,10 +269,10 @@
             if (doc) {
               theDashData[directorySource[dash]] = doc.data()
               var mergedData = that.mergeData(theDashData)
-              that.item = {
+              that.set("item", {
                 data: mergedData, 
                 alerts: alerts,
-              }
+              })
               that.go = !that.go
             } else {
               console.log("No such document!")
