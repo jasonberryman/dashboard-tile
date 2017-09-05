@@ -222,63 +222,61 @@
     },
     getdata: function(dashRef){
       var that = this
-      
-              var theData = dashboard.docs[index].data()
-              var dashKey = dashboard.docs[index].id
-              var dashRef = dashboard.docs[index].ref
+      var theDashData = {}
+      dashRef.onSnapshot(function(dashboard) {
+        var theData = dashboard.data()
+        var dashKey = dashboard.id
               
-              var alerts = {
-                callsQueueing:  theData.callsQueueing,
-                longestWaiting: theData.longestWaiting,
-              }
-              if (theData.displayName) {
-                if (!theDashData[" "]) {
-                  theDashData[" "] = {}
-                }              
-                theDashData[" "].displayName = theData.displayName
-              }          
-              if (theData.description) {
-                if (!theDashData[" "]) {
-                  theDashData[" "] = {}
-                }
-                theDashData[" "].description = theData.description
-              }
+        var alerts = {
+          callsQueueing:  theData.callsQueueing,
+          longestWaiting: theData.longestWaiting,
+        }
+        if (theData.displayName) {
+          if (!theDashData[" "]) {
+             theDashData[" "] = {}
+          }              
+          theDashData[" "].displayName = theData.displayName
+        }          
+        if (theData.description) {
+          if (!theDashData[" "]) {
+             theDashData[" "] = {}
+          }
+          theDashData[" "].description = theData.description
+        }
               
-              if (theData.photoUrl) {
-                if (!theDashData[" "]) {
-                  theDashData[" "] = {}
-                }
-                theDashData[" "].photoUrl = theData.photoUrl
-              }
+        if (theData.photoUrl) {
+          if (!theDashData[" "]) {
+            theDashData[" "] = {}
+          }
+          theDashData[" "].photoUrl = theData.photoUrl
+        }
               
-              var directorySource = theData.directorySource
+        var directorySource = theData.directorySource
               
-              for (var dash in directorySource) {
-                if (that.unSubDash[dashKey] && that.unSubDash[dashKey][directorySource[dash]]) {
-                  that.unSubDash[dashKey][directorySource[dash]]()
-                }
-                if (!that.unSubDash[dashKey]) {
-                  that.unSubDash[dashKey] = {}
-                }
-                that.unSubDash[dashKey][directorySource[dash]] = firebase.firestore().collection('directory')
-                .doc(directorySource[dash])
-                .onSnapshot(function(doc) {
-                  if (doc) {
-                    theDashData[directorySource[dash]] = doc.data()
-                    var mergedData = that.mergeData(theDashData)
-                    that.allDashs[dashKey] = {
-                      data: mergedData, 
-                      alerts: alerts,
-                      directorySource: dash,
-                      dashRef: dashRef,
-                      index: index,
-                    }
-                    that.go = !that.go
-                  } else {
-                    console.log("No such document!")
-                  }
-                })
+        for (var dash in directorySource) {
+          if (that.unSubDash[dashKey] && that.unSubDash[dashKey][directorySource[dash]]) {
+            that.unSubDash[dashKey][directorySource[dash]]()
+          }
+          if (!that.unSubDash[dashKey]) {
+            that.unSubDash[dashKey] = {}
+          }
+          that.unSubDash[dashKey][directorySource[dash]] = firebase.firestore().collection('directory')
+            .doc(directorySource[dash])
+            .onSnapshot(function(doc) {
+            if (doc) {
+              theDashData[directorySource[dash]] = doc.data()
+              var mergedData = that.mergeData(theDashData)
+              that.allDashs[dashKey] = {
+                data: mergedData, 
+                alerts: alerts,
               }
+              that.go = !that.go
+            } else {
+              console.log("No such document!")
+            }
+          })
+        }
+      })
     }
   })
 </script>
