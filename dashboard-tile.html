@@ -257,6 +257,12 @@
         var directorySource = theData.directorySources
               
         for (var dash in directorySource) {
+          if (!that.unSubDash) {
+            that.unSubDash = {}
+          }
+          if (!that.unSubDash[dashKey]) {
+            that.unSubDash[dashKey] = {}
+          }
           if (that.unSubDash[dashKey] && that.unSubDash[dashKey][directorySource[dash]]) {
             that.unSubDash[dashKey][directorySource[dash]]()
           }
