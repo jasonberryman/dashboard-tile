@@ -16,7 +16,8 @@
     "paper-input": "PolymerElements/paper-input#~1.1.24",
     "paper-button": "Polymer/paper-button#~1.0.15",
     "paper-dialog": "PolymerElements/paper-dialog#^1.0.0",
-    "input-image": "marcus7777/input-image"
+    "input-image": "marcus7777/input-image",
+    "paper-autocomplete-chips":"Neovici/paper-autocomplete-chips"
   },
   "devDependencies": {
     "iron-test-helpers": "*",
