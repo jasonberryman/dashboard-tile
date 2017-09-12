@@ -36,7 +36,7 @@
         }
       } 
     </style>
-    <paper-material elevation="5" style="background-color:#FFF" on-tap="openEdit">
+    <paper-material elevation="4" style="background-color:#FFF" on-tap="openEdit">
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
         <paper-icon-item style="height:57px;padding:0px">
           <template is="dom-if" if="[[item.data.photoUrl]]">
@@ -169,14 +169,17 @@
     },
     saveEdited:function() {
       var that = this
-      var photoUrl = this.item.data.photoUrl
-      var displayName = this.item.data.displayName
-      var description = this.item.data.description
+      
+      var photoUrl         = this.item.data.photoUrl
+      var displayName      = this.item.data.displayName
+      var description      = this.item.data.description
+      var directorySources = this.item.data.directorySources
       
       this.dashRef.update({
         photoUrl: photoUrl,
         displayName: displayName,
         description: description,
+        directorySources: directorySources,
       }).then(function() {
         that.updated = true
       }).catch(function(error) {
