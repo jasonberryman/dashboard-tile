@@ -273,7 +273,8 @@
             .doc(directorySource[dash])
             .onSnapshot(function(doc) {
             if (doc) {
-              that.set("theDashData." + doc.id, doc.data())
+              that.theDashData[doc.id] = doc.data()
+              that.set("theDashData", that.theDashData)
               var mergedData = that.mergeData(that.theDashData)
               console.log(mergedData)
               that.set("item", {
