@@ -101,7 +101,7 @@
         <input-image max-width="36" max-height="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input value="{{item.data.description}}"></paper-input>
-        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="{{dataSourcePicked}}"></paper-autocomplete-chips>
+        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="{{item.data.directorySources}}"></paper-autocomplete-chips>
       </div>
       <div class="buttons">
         <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
@@ -128,7 +128,7 @@
       },
       theDashData: {
         value: {}
-      }
+      },
     },
     ready: function() {
       var that = this
@@ -149,8 +149,8 @@
           if (data[theSet].hasOwnProperty(lert)) { 
             if (!output[lert]) {
               output[lert] = data[theSet][lert]
-            } else if ( output[lert] < +data[theSet][lert] && +data[theSet][lert] < (24 * 60 * 60 * 1000) ) { // prefer bigger, not date
-              output[lert] = data[theSet][lert]
+            } else if ( output[lert] == +output[lert] && +data[theSet][lert] < (24 * 60 * 60 * 1000) ) { // prefer bigger, not date
+              output[lert] = output[lert] + data[theSet][lert]
             } else if ( output[lert] > +data[theSet][lert] && +data[theSet][lert] > (24 * 60 * 60 * 1000) ) { // prefer earlier, date
               output[lert] = data[theSet][lert]
             } else if (+data[theSet][lert] === 0) {
