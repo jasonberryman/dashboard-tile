@@ -235,13 +235,13 @@
           longestWaiting: theData.longestWaiting,
         }
         if (theData.displayName) {
-          if (!theDashData[" "]) {
+          if (!this.theDashData[" "]) {
              this.theDashData[" "] = {}
           }              
           this.theDashData[" "].displayName = theData.displayName
         }          
         if (theData.description) {
-          if (!theDashData[" "]) {
+          if (!this.theDashData[" "]) {
              this.theDashData[" "] = {}
           }
           this.theDashData[" "].description = theData.description
