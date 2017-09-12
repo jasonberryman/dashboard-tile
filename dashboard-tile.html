@@ -124,6 +124,9 @@
       _item:{
         computed: "getdata(dashRef)"
       },
+      theDashData: {
+        value: {}
+      }
     },
     mergeData: function(data) {
       var output = {}
@@ -225,7 +228,7 @@
     },
     getdata: function(dashRef){
       var that = this
-      this.theDashData = {}
+      this.set("theDashData", {})
       dashRef.onSnapshot(function(dashboard) {
         var theData = dashboard.data()
         var dashKey = dashboard.id
@@ -235,23 +238,23 @@
           longestWaiting: theData.longestWaiting,
         }
         if (theData.displayName) {
-          if (!this.theDashData[" "]) {
-             this.theDashData[" "] = {}
+          if (!that.theDashData[" "]) {
+             that.theDashData[" "] = {}
           }              
-          this.theDashData[" "].displayName = theData.displayName
+          that.theDashData[" "].displayName = theData.displayName
         }          
         if (theData.description) {
-          if (!this.theDashData[" "]) {
-             this.theDashData[" "] = {}
+          if (!that.theDashData[" "]) {
+             that.theDashData[" "] = {}
           }
-          this.theDashData[" "].description = theData.description
+          that.theDashData[" "].description = theData.description
         }
               
         if (theData.photoUrl) {
-          if (!this.theDashData[" "]) {
-            this.theDashData[" "] = {}
+          if (!that.theDashData[" "]) {
+            that.theDashData[" "] = {}
           }
-          this.theDashData[" "].photoUrl = theData.photoUrl
+          that.theDashData[" "].photoUrl = theData.photoUrl
         }
               
         var directorySource = theData.directorySources
