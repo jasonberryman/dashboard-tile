@@ -131,14 +131,15 @@
       }
     },
     ready: function() {
-      firebase.firestore().collection('directory').get().then(function(doc) {
-        if (doc) {
-          console.log("Document data:", doc.data());
-        } else {
-          console.log("No such document!");
-        }
+      var that = this
+      firebase.firestore().collection('directory').get().then(function(docs) { // TODO where()
+        var dataSource = []
+        docs.forEach(function(doc) {
+          dataSource.push(doc.id)
+        })
+        that.set("dataSource", dataSource)
       }).catch(function(error) {
-       console.log("Error getting document:", error);
+        console.log("Error getting dataSources:", error)
       })
     },
     mergeData: function(data) {
