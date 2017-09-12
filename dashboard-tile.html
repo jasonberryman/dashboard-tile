@@ -130,12 +130,7 @@
         value: {}
       },
       directorySources: {
-        computed: "getIt(item.data.directorySources)" 
-      }
-    },
-    getIt: function(it) {
-      if (it) {
-        return it
+        value: []
       }
     },
     ready: function() {
@@ -280,7 +275,8 @@
         }
               
         var directorySource = theData.directorySources
-              
+        that.set("directorySources",directorySource)
+        
         for (var dash in directorySource) {
           if (!that.unSubDash) {
             that.unSubDash = {}
