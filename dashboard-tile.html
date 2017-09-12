@@ -101,7 +101,7 @@
         <input-image max-width="36" max-height="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input value="{{item.data.description}}"></paper-input>
-        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="{{item.data.directorySources}}"></paper-autocomplete-chips>
+        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
       </div>
       <div class="buttons">
         <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
@@ -129,6 +129,14 @@
       theDashData: {
         value: {}
       },
+      directorySources: {
+        computed: "getIt(item.data.directorySources)" 
+      }
+    },
+    getIt: function(it) {
+      if (it) {
+        return it
+      }
     },
     ready: function() {
       var that = this
