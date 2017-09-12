@@ -101,10 +101,10 @@
         <input-image max-width="36" max-height="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input value="{{item.data.description}}"></paper-input>
-        <div class="buttons">
-          <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
-        </div>
         <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="{{dataSourcePicked}}"></paper-autocomplete-chips>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
       </div>
     </paper-dialog>
   </template>
