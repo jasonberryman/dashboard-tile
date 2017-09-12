@@ -225,7 +225,7 @@
     },
     getdata: function(dashRef){
       var that = this
-      var theDashData = {}
+      this.theDashData = {}
       dashRef.onSnapshot(function(dashboard) {
         var theData = dashboard.data()
         var dashKey = dashboard.id
@@ -236,22 +236,22 @@
         }
         if (theData.displayName) {
           if (!theDashData[" "]) {
-             theDashData[" "] = {}
+             this.theDashData[" "] = {}
           }              
-          theDashData[" "].displayName = theData.displayName
+          this.theDashData[" "].displayName = theData.displayName
         }          
         if (theData.description) {
           if (!theDashData[" "]) {
-             theDashData[" "] = {}
+             this.theDashData[" "] = {}
           }
-          theDashData[" "].description = theData.description
+          this.theDashData[" "].description = theData.description
         }
               
         if (theData.photoUrl) {
-          if (!theDashData[" "]) {
-            theDashData[" "] = {}
+          if (!this.theDashData[" "]) {
+            this.theDashData[" "] = {}
           }
-          theDashData[" "].photoUrl = theData.photoUrl
+          this.theDashData[" "].photoUrl = theData.photoUrl
         }
               
         var directorySource = theData.directorySources
@@ -270,8 +270,9 @@
             .doc(directorySource[dash])
             .onSnapshot(function(doc) {
             if (doc) {
-              theDashData[doc.id] = doc.data()
-              var mergedData = that.mergeData(theDashData)
+              that.set("theDashData." + doc.id, doc.data())
+              var mergedData = that.mergeData(that.theDashData)
+              console.log(mergedData)
               that.set("item", {
                 data: mergedData,
                 alerts: alerts,
