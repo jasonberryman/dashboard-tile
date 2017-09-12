@@ -9,6 +9,7 @@
 <link rel="import" href="../paper-input/paper-textarea.html">
 <link rel="import" href="../input-image/input-image.html">
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-autocomplete-chips/paper-autocomplete-chips.html">
 <!--
   `<dashboard-tile></dashboard-tile>`   
   @demo demo.html
@@ -103,6 +104,7 @@
         <div class="buttons">
           <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
         </div>
+        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="{{dataSourcePicked}}"></paper-autocomplete-chips>
       </div>
     </paper-dialog>
   </template>
@@ -127,6 +129,17 @@
       theDashData: {
         value: {}
       }
+    },
+    ready: function() {
+      firebase.firestore().collection('directory').get().then(function(doc) {
+        if (doc) {
+          console.log("Document data:", doc.data());
+        } else {
+          console.log("No such document!");
+        }
+      }).catch(function(error) {
+       console.log("Error getting document:", error);
+      })
     },
     mergeData: function(data) {
       var output = {}
