@@ -103,6 +103,15 @@
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
+        <paper-input label="Warn at" type="number" min=0 value="{{item.alerts.longestWaiting.warn}}">
+          <div suffix>s</div>
+        </paper-input>
+        <paper-input label="Alert at" type="number" min=0 value="{{item.alerts.longestWaiting.alert}}">
+          <div suffix>s</div>
+        </paper-input>
+        <paper-input label="Flash at" type="number" min=0 value="{{item.alerts.longestWaiting.alertFlash}}">
+          <div suffix>s</div>
+        </paper-input>
       </div>
       <div class="buttons">
         <paper-button dialog-confirm autofocus on-tap="saveEdited">done</paper-button>
