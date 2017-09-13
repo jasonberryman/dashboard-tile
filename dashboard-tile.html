@@ -160,7 +160,10 @@
       firebase.firestore().collection('directory').get().then(function(docs) { // TODO where()
         var dataSource = []
         docs.forEach(function(doc) {
-          dataSource.push(doc.id)
+          dataSource.push({
+            id: doc.id,
+            name: doc.data().displayName,
+          })
         })
         that.set("dataSource", dataSource)
       }).catch(function(error) {
