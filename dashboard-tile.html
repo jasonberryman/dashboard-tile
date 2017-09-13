@@ -103,20 +103,9 @@
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips attr-For-Value="id" label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
+        
         <div style="display:inline-block;width:48%">
-          <h5>Longest Waiting Alerts</h5>
-          <paper-input style="display:inline-block;width:56px;margin-right:7px;" label="Warn at" type="number" min=0 value="{{item.alerts.longestWaiting.warn}}">
-            <div suffix>s</div>
-          </paper-input>
-          <paper-input style="display:inline-block;width:56px;margin-right:7px" label="Alert at" type="number" min="[[item.alerts.longestWaiting.warn]]" value="{{item.alerts.longestWaiting.alert}}">
-            <div suffix>s</div>
-          </paper-input>
-          <paper-input style="display:inline-block;width:56px" label="Flash at" type="number" min="[[item.alerts.longestWaiting.alert]]" value="{{item.alerts.longestWaiting.alertFlash}}">
-            <div suffix>s</div>
-          </paper-input>
-        </div>
-        <div style="display:inline-block;width:48%">
-          <h5>Calls Queueing Alerts</h5>
+          <h4>Calls Queueing Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:79px;margin-right:7px;" label="Warn at" type="number" min=0 value="{{item.alerts.callsQueueing.warn}}">
             <div suffix>calls</div>
           </paper-input>
@@ -125,6 +114,18 @@
           </paper-input>
           <paper-input style="display:inline-block;width:79px" label="Flash at" type="number" min="[[item.alerts.callsQueueing.alert]]" value="{{item.alerts.callsQueueing.alertFlash}}">
             <div suffix>calls</div>
+          </paper-input>
+        </div>
+        <div style="display:inline-block;width:48%">
+          <h4>Longest Waiting Alert Thresholds</h4>
+          <paper-input style="display:inline-block;width:56px;margin-right:7px;" label="Warn at" type="number" min=0 value="{{item.alerts.longestWaiting.warn}}">
+            <div suffix>s</div>
+          </paper-input>
+          <paper-input style="display:inline-block;width:56px;margin-right:7px" label="Alert at" type="number" min="[[item.alerts.longestWaiting.warn]]" value="{{item.alerts.longestWaiting.alert}}">
+            <div suffix>s</div>
+          </paper-input>
+          <paper-input style="display:inline-block;width:56px" label="Flash at" type="number" min="[[item.alerts.longestWaiting.alert]]" value="{{item.alerts.longestWaiting.alertFlash}}">
+            <div suffix>s</div>
           </paper-input>
         </div>
       </div>
