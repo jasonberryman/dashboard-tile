@@ -198,7 +198,13 @@
       var photoUrl         = this.item.data.photoUrl
       var displayName      = this.item.data.displayName
       var description      = this.item.data.description
-      var directorySources = this.directorySources
+      var directorySources = this.directorySources.map(function(directory) {
+        if (typeof directory == "string") {
+          return directory
+        } else {
+          return directory.key
+        }
+      })
       
       var callsQueueing    = this.item.alerts.callsQueueing
       var longestWaiting   = this.item.alerts.longestWaiting
