@@ -161,8 +161,8 @@
         var dataSource = []
         docs.forEach(function(doc) {
           dataSource.push({
-            id: doc.id,
-            name: doc.data().displayName,
+            key: doc.id,
+            text: doc.data().displayName,
           })
         })
         that.set("dataSource", dataSource)
