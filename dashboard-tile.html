@@ -103,6 +103,7 @@
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
+        <h6>Longest Waiting Alerts</h6>
         <paper-input style="display:inline-block;width:66px;margin-right:7px;" label="Warn at" type="number" min=0 value="{{item.alerts.longestWaiting.warn}}">
           <div suffix>s</div>
         </paper-input>
@@ -111,6 +112,16 @@
         </paper-input>
         <paper-input style="display:inline-block;width:66px" label="Flash at" type="number" min=0 value="{{item.alerts.longestWaiting.alertFlash}}">
           <div suffix>s</div>
+        </paper-input>
+        <h6>Calls Queueing Alerts</h6>
+        <paper-input style="display:inline-block;width:66px;margin-right:7px;" label="Warn at" type="number" min=0 value="{{item.alerts.callsQueueing.warn}}">
+          <div suffix>calls</div>
+        </paper-input>
+        <paper-input style="display:inline-block;width:66px;margin-right:7px" label="Alert at" type="number" min=0 value="{{item.alerts.callsQueueing.alert}}">
+          <div suffix>calls</div>
+        </paper-input>
+        <paper-input style="display:inline-block;width:66px" label="Flash at" type="number" min=0 value="{{item.alerts.callsQueueing.alertFlash}}">
+          <div suffix>calls</div>
         </paper-input>
       </div>
       <div class="buttons">
