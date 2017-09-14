@@ -106,7 +106,7 @@
         <paper-input label="Description" value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips attr-For-Value="id" label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
         
-        <div style="min-width: 286px;display:inline-block;width:48%">
+        <div style="margin-right:20px;min-width: 286px;display:inline-block;width:48%">
           <h4>Calls Queueing Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:79px;margin-right:20px;" label="Warn at" type="number" min=0 value="{{item.alerts.callsQueueing.warn}}">
             <div suffix>calls</div>
