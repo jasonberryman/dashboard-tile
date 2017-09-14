@@ -37,8 +37,8 @@
         }
       } 
     </style>
-    <paper-material elevation="4" style="background-color:#FFF" on-tap="openEdit">
-      <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000">
+    <paper-material elevation="4" style="background-color:#FFF">
+      <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000" on-tap="openEdit">
         <paper-icon-item style="height:57px;padding:0px">
           <template is="dom-if" if="[[item.data.photoUrl]]">
             <img item-icon style="width:36px;margin:6px;border-radius:50%" src="[[item.data.photoUrl]]" />
