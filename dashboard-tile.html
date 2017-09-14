@@ -101,7 +101,7 @@
     <paper-dialog>
       <h2>Customise Dashboard</h2>
       <paper-dialog-scrollable>
-        <input-image style="width:80px;margin:6px;border-radius:50%" max-width="80" max-height="80" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
+        <input-image style="width:80px;margin:6px;border-radius:50%" max-width="80" max-height="80" value="{{item.data.photoUrl}}"></input-image>
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input label="Description" value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips attr-For-Value="id" label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
