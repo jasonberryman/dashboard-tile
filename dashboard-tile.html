@@ -42,10 +42,10 @@
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000" on-tap="openEdit">
         <paper-icon-item style="height:57px;padding:0px">
           <template is="dom-if" if="[[item.data.photoUrl]]">
-            <img item-icon style="width:36px;margin:6px;border-radius:50%" src="[[item.data.photoUrl]]" />
+            <img item-icon style="display:inline-block;width:36px;margin:6px;border-radius:50%" src="[[item.data.photoUrl]]" />
           </template>
           <template is="dom-if" if="[[!item.data.photoUrl]]">
-            <text-avatar style="width:36px;margin:6px;border-radius:50%" item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
+            <text-avatar style="display:inline-block;width:36px;margin:6px;border-radius:50%" item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
           </template>
         </paper-icon-item>
         <paper-item-body style="color:#333" two-line>
@@ -101,7 +101,7 @@
     <paper-dialog>
       <h2>Customise Dashboard</h2>
       <paper-dialog-scrollable>
-        <input-image style="width:80px;margin:6px;border-radius:50%" max-width="80" max-height="80" value="{{item.data.photoUrl}}"></input-image>
+        <input-image style="display:inline-block;width:80px;margin:6px;border-radius:50%" max-width="80" max-height="80" value="{{item.data.photoUrl}}"></input-image>
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
         <paper-input label="Description" value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips attr-For-Value="id" label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
