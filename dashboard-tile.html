@@ -103,7 +103,7 @@
       <paper-dialog-scrollable>
         <input-image max-width="36" max-height="36" value="{{item.data.photoUrl}}" label="Avatar"></input-image>
         <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
-        <paper-input value="{{item.data.description}}"></paper-input>
+        <paper-input label="Description" value="{{item.data.description}}"></paper-input>
         <paper-autocomplete-chips attr-For-Value="id" label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
         
         <div style="min-width: 286px;display:inline-block;width:48%">
