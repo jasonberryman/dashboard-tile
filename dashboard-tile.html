@@ -135,6 +135,8 @@
         </div>
       </paper-dialog-scrollable>
       <div class="buttons">
+        
+        <paper-button dialog-confirm on-tap="delete">Delete</paper-button>
         <paper-button dialog-confirm>Cancel</paper-button>
         <paper-button dialog-confirm autofocus on-tap="saveEdited">Save</paper-button>
       </div>
@@ -198,6 +200,9 @@
     },
     openEdit: function() {
       this.$$("paper-dialog").open()
+    },
+    delete: function() {
+      this.dashRef.update(null)
     },
     saveEdited:function() {
       var that = this
