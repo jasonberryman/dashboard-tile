@@ -117,7 +117,7 @@
           <paper-input style="display:inline-block;width:79px;margin-right:20px" label="Alert at" type="number" min="[[item.alerts.callsQueueing.warn]]" value="{{item.alerts.callsQueueing.alert}}">
             <div suffix>calls</div>
           </paper-input>
-          <paper-input style="width:79px" label="Flash at" type="number" min="[[item.alerts.callsQueueing.alert]]" value="{{item.alerts.callsQueueing.alertFlash}}">
+          <paper-input style="display:inline-block;width:79px" label="Flash at" type="number" min="[[item.alerts.callsQueueing.alert]]" value="{{item.alerts.callsQueueing.alertFlash}}">
             <div suffix>calls</div>
           </paper-input>
         </div>
@@ -136,7 +136,6 @@
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-confirm style="color:red" on-tap="delete">Delete</paper-button>
-        <span></span>
         <paper-button dialog-confirm>Cancel</paper-button>
         <paper-button dialog-confirm autofocus on-tap="saveEdited">Save</paper-button>
       </div>
