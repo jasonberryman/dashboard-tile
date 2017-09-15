@@ -109,7 +109,7 @@
         </div>
         <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
       
-        <div style="margin-right:20px;min-width: 286px;width:48%">
+        <div>
           <h4 style="margin: 10px 0 0 0">Calls Queueing Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:79px;margin-right:20px;" label="Warn at" type="number" min=0 value="{{item.alerts.callsQueueing.warn}}">
             <div suffix>calls</div>
@@ -121,7 +121,7 @@
             <div suffix>calls</div>
           </paper-input>
         </div>
-        <div style="min-width: 226px;display:inline-block;width:48%">
+        <div>
           <h4 style="margin: 10px 0 0 0">Longest Waiting Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:56px;margin-right:20px;" label="Warn at" type="number" min=0 value="{{item.alerts.longestWaiting.warn}}">
             <div suffix>s</div>
@@ -135,8 +135,8 @@
         </div>
       </paper-dialog-scrollable>
       <div class="buttons">
-        
         <paper-button dialog-confirm style="color:red" on-tap="delete">Delete</paper-button>
+        <span></span>
         <paper-button dialog-confirm>Cancel</paper-button>
         <paper-button dialog-confirm autofocus on-tap="saveEdited">Save</paper-button>
       </div>
