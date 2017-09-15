@@ -101,17 +101,15 @@
     <paper-dialog>
       <h2>Customise Dashboard</h2>
       <paper-dialog-scrollable>
-        
         <input-image style="float:left;height:80px;overflow: hidden;display:inline-block;width:80px;margin:20px;border-radius:50%" max-width="80" max-height="80" width="80px" height="80px"  value="{{item.data.photoUrl}}"></input-image>
         
         <div style="display: inline-block">
           <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
           <paper-input label="Description" value="{{item.data.description}}"></paper-input>
         </div>
-        
-        <paper-autocomplete-chips attr-For-Value="id" label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
+        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
       
-        <div style="margin-right:20px;min-width: 286px;display:inline-block;width:48%">
+        <div style="margin-right:20px;min-width: 286px;width:48%">
           <h4 style="margin: 10px 0 0 0">Calls Queueing Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:79px;margin-right:20px;" label="Warn at" type="number" min=0 value="{{item.alerts.callsQueueing.warn}}">
             <div suffix>calls</div>
@@ -119,7 +117,7 @@
           <paper-input style="display:inline-block;width:79px;margin-right:20px" label="Alert at" type="number" min="[[item.alerts.callsQueueing.warn]]" value="{{item.alerts.callsQueueing.alert}}">
             <div suffix>calls</div>
           </paper-input>
-          <paper-input style="display:inline-block;width:79px" label="Flash at" type="number" min="[[item.alerts.callsQueueing.alert]]" value="{{item.alerts.callsQueueing.alertFlash}}">
+          <paper-input style="width:79px" label="Flash at" type="number" min="[[item.alerts.callsQueueing.alert]]" value="{{item.alerts.callsQueueing.alertFlash}}">
             <div suffix>calls</div>
           </paper-input>
         </div>
