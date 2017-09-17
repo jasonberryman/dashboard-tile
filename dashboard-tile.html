@@ -99,6 +99,9 @@
         </tr>
       </tbody></table>
     </paper-material>
+    
+    
+    
     <paper-dialog modal>
       <h2>Customise Dashboard</h2>
       <paper-dialog-scrollable>
@@ -108,7 +111,7 @@
           <paper-input label="Name" value="{{item.data.displayName}}"></paper-input>
           <paper-input label="Description" value="{{item.data.description}}"></paper-input>
         </div>
-        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[directorySources]]"></paper-autocomplete-chips>
+        <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[pickedSources]]"></paper-autocomplete-chips>
       
         <div>
           <h4 style="margin: 10px 0 0 0">Calls Queueing Alert Thresholds</h4>
@@ -155,28 +158,28 @@
         computed: "getFg(bg)",
       },
       _item:{
-        computed: "getdata(dashRef)"
+        computed: "getdata(dashRef)",
       },
       theDashData: {
-        value: {}
+        value: {},
       },
       directorySources: {
-        value: []
+        value: [],
+      },
+      pickedSources: {
+        value: [],
+        computed:"getPickedSources(dataSource, directorySources)",
       },
     },
-    ready: function() {
-      var that = this
-      firebase.firestore().collection('directory').get().then(function(docs) { // TODO where()
-        var dataSource = []
-        docs.forEach(function(doc) {
-          dataSource.push({
-            key: doc.id,
-            text: doc.data().displayName,
-          })
-        })
-        that.set("dataSource", dataSource)
-      }).catch(function(error) {
-        console.log("Error getting dataSources:", error)
+    getPickedSources: function(dataSource, directorySources) {
+      return directorySources.map(function(currentValue) {
+        var len
+        for (var indx = 0, len = dataSource.length; indx < len; ++indx) {
+          if (dataSource[indx].key === currentValue) {
+            return dataSource[indx]
+          }
+        }
+        return currentValue
       })
     },
     mergeData: function(data) {
@@ -200,6 +203,19 @@
     },
     openEdit: function() {
       this.$$("paper-dialog").open()
+      var that = this
+      firebase.firestore().collection('directory').get().then(function(docs) { // TODO where()
+        var dataSource = []
+        docs.forEach(function(doc) {
+          dataSource.push({
+            key: doc.id,
+            text: doc.data().displayName,
+          })
+        })
+        that.set("dataSource", dataSource)
+      }).catch(function(error) {
+        console.log("Error getting dataSources:", error)
+      })
     },
     delete: function() {
       this.dashRef.delete()
@@ -326,7 +342,7 @@
         }
               
         var directorySource = theData.directorySources
-        that.set("directorySources",directorySource)
+        that.set("directorySources", directorySource)
         
         for (var dash in directorySource) {
           if (!that.unSubDash) {
