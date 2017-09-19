@@ -381,9 +381,21 @@
             })
           }
         } else {
+          that.openEdit()
           that.set("item", {
-            data: that.mergedData( that.theDashData ),
-            alerts: alerts,
+            data: {},
+            alerts: {
+              callsQueueing: {
+                warn:6,
+                alert:9,
+                alertFlash:12,
+              },
+              longestWaiting: {
+                warn:45,
+                alert:60,
+                alertFlash:90,
+              },
+            },
           })
         }
       })
