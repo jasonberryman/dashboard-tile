@@ -164,6 +164,9 @@
       directorySources: {
         value: [],
       },
+      pickedSources: {
+        value: [],
+      },
       canCreate: {
         type:Boolean,
         value:false,
@@ -351,24 +354,24 @@
           that.theDashData[" "].photoUrl = theData.photoUrl
         }
               
-        var directorySource = theData.directorySources
-        that.set("directorySources", directorySource)
+        var directorySources = theData.directorySources
+        that.set("directorySources", directorySources)
         
-        that.set("pickedSources", that.getPickedSources(that.dataSource, directorySource))
+        that.set("pickedSources", that.getPickedSources(that.dataSource, directorySources))
                  
-        if (directorySource.length) {
-          for (var dash in directorySource) {
+        if (directorySources.length) {
+          for (var dash in directorySources) {
             if (!that.unSubDash) {
               that.unSubDash = {}
             }
             if (!that.unSubDash[dashKey]) {
               that.unSubDash[dashKey] = {}
             }
-            if (that.unSubDash[dashKey][directorySource[dash]]) {
-              that.unSubDash[dashKey][directorySource[dash]]()
+            if (that.unSubDash[dashKey][directorySources[dash]]) {
+              that.unSubDash[dashKey][directorySources[dash]]()
             }
-            that.unSubDash[dashKey][directorySource[dash]] = firebase.firestore().collection('directory')
-              .doc(directorySource[dash])
+            that.unSubDash[dashKey][directorySources[dash]] = firebase.firestore().collection('directory')
+              .doc(directorySources[dash])
               .onSnapshot(function(doc) {
               if (doc) {
                 that.theDashData[doc.id] = doc.data()
