@@ -168,6 +168,10 @@
         value: [],
         computed:"getPickedSources(dataSource, directorySources)",
       },
+      canCreate: {
+        type:Boolean,
+        value:false,
+      },
     },
     getPickedSources: function(dataSource, directorySources) {
       return directorySources.map(function(currentValue) {
@@ -381,7 +385,9 @@
             })
           }
         } else {
-          that.openEdit()
+          if (that.canCreate) {
+            that.openEdit()
+          }
           that.set("item", {
             data: {},
             alerts: {
