@@ -214,6 +214,10 @@
           })
         })
         that.set("dataSource", dataSource)
+        
+        if (that.directorySources) {
+          that.set("pickedSources", that.getPickedSources(dataSource, that.directorySources))
+        }
       }).catch(function(error) {
         console.log("Error getting dataSources:", error)
       })
@@ -357,7 +361,9 @@
         var directorySources = theData.directorySources
         that.set("directorySources", directorySources)
         
-        that.set("pickedSources", that.getPickedSources(that.dataSource, directorySources))
+        if (that.dataSource) {
+          that.set("pickedSources", that.getPickedSources(that.dataSource, directorySources))
+        }
                  
         if (directorySources.length) {
           for (var dash in directorySources) {
