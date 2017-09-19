@@ -352,32 +352,38 @@
               
         var directorySource = theData.directorySources
         that.set("directorySources", directorySource)
-        
-        for (var dash in directorySource) {
-          if (!that.unSubDash) {
-            that.unSubDash = {}
-          }
-          if (!that.unSubDash[dashKey]) {
-            that.unSubDash[dashKey] = {}
-          }
-          if (that.unSubDash[dashKey][directorySource[dash]]) {
-            that.unSubDash[dashKey][directorySource[dash]]()
-          }
-          that.unSubDash[dashKey][directorySource[dash]] = firebase.firestore().collection('directory')
-            .doc(directorySource[dash])
-            .onSnapshot(function(doc) {
-            if (doc) {
-              that.theDashData[doc.id] = doc.data()
-              that.set("theDashData", that.theDashData)
-              var mergedData = that.mergeData(that.theDashData)
-              that.set("item", {
-                data: mergedData,
-                alerts: alerts,
-              })
-              that.go = !that.go
-            } else {
-              console.log("No such directorySource!")
+        if (directorySource.length) {
+          for (var dash in directorySource) {
+            if (!that.unSubDash) {
+              that.unSubDash = {}
             }
+            if (!that.unSubDash[dashKey]) {
+              that.unSubDash[dashKey] = {}
+            }
+            if (that.unSubDash[dashKey][directorySource[dash]]) {
+              that.unSubDash[dashKey][directorySource[dash]]()
+            }
+            that.unSubDash[dashKey][directorySource[dash]] = firebase.firestore().collection('directory')
+              .doc(directorySource[dash])
+              .onSnapshot(function(doc) {
+              if (doc) {
+                that.theDashData[doc.id] = doc.data()
+                that.set("theDashData", that.theDashData)
+                var mergedData = that.mergeData(that.theDashData)
+                that.set("item", {
+                  data: mergedData,
+                  alerts: alerts,
+                })
+                that.go = !that.go
+              } else {
+                console.log("No such directorySource!")
+              }
+            })
+          }
+        } else {
+          that.set("item", {
+            data: that.mergedData( that.theDashData ),
+            alerts: alerts,
           })
         }
       })
