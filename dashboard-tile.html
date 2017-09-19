@@ -164,10 +164,6 @@
       directorySources: {
         value: [],
       },
-      pickedSources: {
-        value: [],
-        computed:"getPickedSources(dataSource, directorySources)",
-      },
       canCreate: {
         type:Boolean,
         value:false,
@@ -326,6 +322,7 @@
     getdata: function(dashRef){
       var that = this
       this.set("theDashData", {})
+      
       dashRef.onSnapshot(function(dashboard) {
         var theData = dashboard.data()
         var dashKey = dashboard.id
@@ -356,6 +353,9 @@
               
         var directorySource = theData.directorySources
         that.set("directorySources", directorySource)
+        
+        that.set("pickedSources", that.getPickedSources(that.dataSource, directorySource))
+                 
         if (directorySource.length) {
           for (var dash in directorySource) {
             if (!that.unSubDash) {
