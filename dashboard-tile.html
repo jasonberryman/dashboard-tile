@@ -100,8 +100,6 @@
       </tbody></table>
     </paper-material>
     
-    
-    
     <paper-dialog modal>
       <h2>Customise Dashboard</h2>
       <paper-dialog-scrollable>
@@ -223,9 +221,20 @@
     saveEdited:function() {
       var that = this
       
-      var photoUrl         = this.item.data.photoUrl
-      var displayName      = this.item.data.displayName
-      var description      = this.item.data.description
+      var displayName 
+      var photoUrl
+      var description
+      
+      if (this.item.data.displayName) {
+        displayName = this.item.data.displayName
+      }
+      if (this.item.data.photoUrl) {
+        photoUrl = this.item.data.photoUrl
+      }
+      if (this.item.data.description) {
+        description = this.item.data.description
+      }
+      
       var directorySources = this.directorySources.map(function(directory) {
         if (typeof directory == "string") {
           return directory
