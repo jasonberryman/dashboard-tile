@@ -210,6 +210,7 @@
     openEdit: function() {
       this.$$("paper-dialog").open()
       var that = this
+      
       firebase.firestore().collection('directory').get().then(function(docs) { // TODO where()
         var dataSource = []
         docs.forEach(function(doc) {
@@ -257,19 +258,28 @@
       
       var callsQueueing    = this.item.alerts.callsQueueing
       var longestWaiting   = this.item.alerts.longestWaiting
-      
-      this.dashRef.update({
+      var dashUpdated      = {
         photoUrl: photoUrl,
         displayName: displayName,
         description: description,
         directorySources: directorySources,
         callsQueueing: callsQueueing,
         longestWaiting: longestWaiting,
-      }).then(function() {
-        that.updated = true
-      }).catch(function(error) {
-        console.error("Error updating: ", error)
-      })
+        weight: 0,
+      }
+      if (!this.dashRef) {
+        this.dashboardsRef.add(dashUpdated).then(function() {
+          that.added = true
+        }).catch(function(error) {
+          console.error("Error updating: ", error)
+        })
+      } else {
+        this.dashRef.update(dashUpdated).then(function() {
+          that.updated = true
+        }).catch(function(error) {
+          console.error("Error updating: ", error)
+        })
+      }
     },
     findBg: function(data, alerts, longestWaitingSec){
       var inStates = {}
