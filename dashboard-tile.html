@@ -191,9 +191,9 @@
           if (data[theSet].hasOwnProperty(lert)) { 
             if (!output[lert]) {
               output[lert] = data[theSet][lert]
-            } else if (typeof output[lert] === 'number'  && +data[theSet][lert] < (24 * 60 * 60 * 1000) ) { // prefer bigger, not date
+            } else if (typeof output[lert] === 'number' && +data[theSet][lert] < (24 * 60 * 60 * 1000) ) { // prefer bigger, not date
               output[lert] = +output[lert] + +data[theSet][lert]
-            } else if ( +output[lert] > +data[theSet][lert] && +data[theSet][lert] > (24 * 60 * 60 * 1000) ) { // prefer earlier, date
+            } else if (typeof output[lert] === 'number' && output[lert] > +data[theSet][lert] && +data[theSet][lert] > (24 * 60 * 60 * 1000) ) { // prefer earlier, date
               output[lert] = +data[theSet][lert]
             } else if (+data[theSet][lert] === 0) {
               output[lert] = data[theSet][lert]
