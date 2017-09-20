@@ -192,7 +192,7 @@
             if (!output[lert]) {
               output[lert] = data[theSet][lert]
             } else if ( output[lert] == +output[lert] && +data[theSet][lert] < (24 * 60 * 60 * 1000) ) { // prefer bigger, not date
-              output[lert] = output[lert] + data[theSet][lert]
+              output[lert] = +output[lert] + +data[theSet][lert]
             } else if ( +output[lert] > +data[theSet][lert] && +data[theSet][lert] > (24 * 60 * 60 * 1000) ) { // prefer earlier, date
               output[lert] = +data[theSet][lert]
             } else if (+data[theSet][lert] === 0) {
