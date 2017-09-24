@@ -234,6 +234,7 @@
             key: doc.id,
             text: doc.data().displayName,
           })
+          
         })
         that.set("dataSource", dataSource)
         
@@ -256,7 +257,9 @@
       var display = {}
       
       for (var showOn in this.display) {
-        display[showOn] = this.display[showOn]
+        if (this.display[showOn]) {
+          display[showOn] = 0 // TODO read the weight of the display
+        }
       }
       
       if (this.item.data.displayName) {
@@ -424,6 +427,13 @@
                   data: mergedData,
                   alerts: alerts,
                 })
+                var display
+                if (doc.display)
+                for (var showOn in doc.display) {
+                  if (doc.display[showOn] !== undefined) {
+                    that.set("display." + showOn, doc.display[showOn])
+                  }
+                }
                 that.go = !that.go
               } else {
                 console.log("No such directorySource!")
