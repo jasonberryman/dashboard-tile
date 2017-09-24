@@ -172,6 +172,9 @@
       theDashData: {
         value: {},
       },
+      display: {
+        value: {},
+      },
       directorySources: {
         value: [],
       },
@@ -220,6 +223,7 @@
       return output
     },
     openEdit: function() {
+      
       this.$$("paper-dialog").open()
       var that = this
       
@@ -249,6 +253,11 @@
       var displayName = ""
       var photoUrl = ""
       var description = ""
+      var display = {}
+      
+      for (var showOn in this.display) {
+        display[showOn] = this.display[showOn]
+      }
       
       if (this.item.data.displayName) {
         displayName = this.item.data.displayName
@@ -278,6 +287,7 @@
         callsQueueing: callsQueueing,
         longestWaiting: longestWaiting,
         weight: 0,
+        display: display,
       }
       if (!this.dashRef) {
         this.dashboardsRef.add(dashUpdated).then(function() {
