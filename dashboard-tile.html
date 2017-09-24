@@ -9,6 +9,7 @@
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-autocomplete-chips/paper-autocomplete-chips.html">
 <link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../smoothie-charts/smoothie-charts.html">
 <link rel="import" href="../input-image/input-image.html">
 <link rel="import" href="../count-up/count-up.html">
@@ -43,11 +44,11 @@
     <paper-material elevation="4" style="background-color:#FFF">
       <paper-item style="background-color: rgba(255, 255, 255, 0.85);color:#000" on-tap="openEdit">
         <paper-icon-item style="height:57px;padding:0px">
-          <template is="dom-if" if="[[item.data.photoUrl]]">
+          <template is="dom-if" if="[[ item.data.photoUrl]]">
             <img item-icon style="display:inline-block;width:36px;margin:6px;border-radius:50%" src="[[item.data.photoUrl]]" />
           </template>
           <template is="dom-if" if="[[!item.data.photoUrl]]">
-            <text-avatar style="display:inline-block;width:36px;margin:6px;border-radius:50%" item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
+            <text-avatar   style="display:inline-block;width:36px;margin:6px;border-radius:50%" item-icon name="[[item.data.displayName]]">[[item.data.displayName.0]]</text-avatar>
           </template>
         </paper-icon-item>
         <paper-item-body style="color:#333" two-line>
@@ -136,6 +137,14 @@
           <paper-input style="display:inline-block;width:56px" label="Flash at" type="number" min="[[item.alerts.longestWaiting.alert]]" value="{{item.alerts.longestWaiting.alertFlash}}">
             <div suffix>s</div>
           </paper-input>
+        </div>
+        <div>
+          <h3>Displays</h3>
+          <div style="display:flex;justify-content: space-evenly;">
+            Homepage <paper-toggle-button checked="{{display.home}}"></paper-toggle-button>
+            Sidebar  <paper-toggle-button checked="{{display.sidebar}}"></paper-toggle-button>
+            a call   <paper-toggle-button checked="{{display.call}}"></paper-toggle-button>
+          </div>
         </div>
       </paper-dialog-scrollable>
       <div class="buttons">
