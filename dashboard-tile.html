@@ -190,6 +190,20 @@
       dashRef: {
         value: {},
       },
+      _display:{
+        computed: "setDisplay(display,display.*)"
+      },
+    },
+    setDisplay: function(displays){
+      var atLeastOne = 0
+      for (var display in displays) {
+        if (displays[display]) {
+          atLeastOne++
+        }
+      }
+      if (!atLeastOne) {
+        this.display.home = true
+      }
     },
     getPickedSources: function(dataSource, directorySources) {
       return directorySources.map(function(currentValue) {
