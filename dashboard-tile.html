@@ -113,9 +113,8 @@
         </div>
         
         <paper-autocomplete-chips label="Select Data Sources" source='[[dataSource]]' selected-Items="[[pickedSources]]"></paper-autocomplete-chips>
-      
+        <h4 style="margin: 10px 0 0 0">Calls Queueing Alert Thresholds</h4>
         <div style="display:flex;justify-content: space-evenly;">
-          <h4 style="margin: 10px 0 0 0">Calls Queueing Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:79px;margin-right:20px;" label="Warn at" type="number" min=0 value="{{item.alerts.callsQueueing.warn}}">
             <div suffix>calls</div>
           </paper-input>
@@ -126,8 +125,8 @@
             <div suffix>calls</div>
           </paper-input>
         </div>
+        <h4 style="margin: 10px 0 0 0">Longest Waiting Alert Thresholds</h4>
         <div style="display:flex;justify-content: space-evenly;">
-          <h4 style="margin: 10px 0 0 0">Longest Waiting Alert Thresholds</h4>
           <paper-input style="display:inline-block;width:56px;margin-right:20px;" label="Warn at" type="number" min=0 value="{{item.alerts.longestWaiting.warn}}">
             <div suffix>s</div>
           </paper-input>
