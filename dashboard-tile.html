@@ -236,11 +236,8 @@
       return output
     },
     openEdit: function() {
-      
       this.$$("paper-dialog").open()
       var that = this
-      
-      
       
       firebase.firestore().collection('directory').get().then(function(docs) { // TODO where()
         var dataSource = []
@@ -383,98 +380,105 @@
     getdata: function(dashRef){
       var that = this
       this.set("theDashData", {})
-      
-      dashRef.onSnapshot(function(dashboard) {
-        var theData = dashboard.data()
-        var dashKey = dashboard.id
-              
-        var alerts = {
-          callsQueueing:  theData.callsQueueing,
-          longestWaiting: theData.longestWaiting,
+      var newOne = function() {
+        if (that.canCreate) {
+          that.openEdit()
         }
-        if (theData.displayName) {
-          if (!that.theDashData[" "]) {
-             that.theDashData[" "] = {}
-          }              
-          that.theDashData[" "].displayName = theData.displayName
-        }          
-        if (theData.description) {
-          if (!that.theDashData[" "]) {
-             that.theDashData[" "] = {}
-          }
-          that.theDashData[" "].description = theData.description
-        }
-              
-        if (theData.photoUrl) {
-          if (!that.theDashData[" "]) {
-            that.theDashData[" "] = {}
-          }
-          that.theDashData[" "].photoUrl = theData.photoUrl
-        }
-              
-        var directorySources = theData.directorySources
-        that.set("directorySources", directorySources)
-        
-        if (that.dataSource) {
-          that.set("pickedSources", that.getPickedSources(that.dataSource, directorySources))
-        }
-                 
-        if (directorySources.length) {
-          for (var dash in directorySources) {
-            if (!that.unSubDash) {
-              that.unSubDash = {}
-            }
-            if (!that.unSubDash[dashKey]) {
-              that.unSubDash[dashKey] = {}
-            }
-            if (that.unSubDash[dashKey][directorySources[dash]]) {
-              that.unSubDash[dashKey][directorySources[dash]]()
-            }
-            that.unSubDash[dashKey][directorySources[dash]] = firebase.firestore().collection('directory')
-              .doc(directorySources[dash])
-              .onSnapshot(function(doc) {
-              if (doc) {
-                that.theDashData[doc.id] = doc.data()
-                that.set("theDashData", that.theDashData)
-                var mergedData = that.mergeData(that.theDashData)
-                that.set("item", {
-                  data: mergedData,
-                  alerts: alerts,
-                })
-                var display
-                if (doc.display)
-                for (var showOn in doc.display) {
-                  if (doc.display[showOn] !== undefined) {
-                    that.set("display." + showOn, doc.display[showOn])
-                  }
-                }
-                that.go = !that.go
-              } else {
-                console.log("No such directorySource!")
-              }
-            })
-          }
-        } else {
-          if (that.canCreate) {
-            that.openEdit()
-          }
-          that.set("item", {
-            data: {},
-            alerts: {
-              callsQueueing: {
-                warn:6,
-                alert:9,
-                alertFlash:12,
-              },
-              longestWaiting: {
-                warn:45,
-                alert:60,
-                alertFlash:90,
-              },
+        that.set("item", {
+          data: {},
+          alerts: {
+            callsQueueing: {
+              warn:6,
+              alert:9,
+              alertFlash:12,
             },
-          })
-        }
-      })
+            longestWaiting: {
+              warn:45,
+              alert:60,
+              alertFlash:90,
+            },
+          },
+        })
+      }
+      if (!dashRef) {
+        newOne()
+      } else {
+        dashRef.onSnapshot(function(dashboard) {
+          var theData = dashboard.data()
+          var dashKey = dashboard.id
+               
+          var alerts = {
+            callsQueueing:  theData.callsQueueing,
+            longestWaiting: theData.longestWaiting,
+          }
+          if (theData.displayName) {
+            if (!that.theDashData[" "]) {
+               that.theDashData[" "] = {}
+            }              
+            that.theDashData[" "].displayName = theData.displayName
+          }          
+          if (theData.description) {
+            if (!that.theDashData[" "]) {
+              that.theDashData[" "] = {}
+            }
+            that.theDashData[" "].description = theData.description
+          }
+              
+          if (theData.photoUrl) {
+            if (!that.theDashData[" "]) {
+              that.theDashData[" "] = {}
+            }
+            that.theDashData[" "].photoUrl = theData.photoUrl
+          }
+              
+          var directorySources = theData.directorySources
+          that.set("directorySources", directorySources)
+        
+          if (that.dataSource) {
+            that.set("pickedSources", that.getPickedSources(that.dataSource, directorySources))
+          }
+                 
+          if (directorySources.length) {
+            for (var dash in directorySources) {
+              if (!that.unSubDash) {
+                that.unSubDash = {}
+              }
+              if (!that.unSubDash[dashKey]) {
+                that.unSubDash[dashKey] = {}
+              }
+              if (that.unSubDash[dashKey][directorySources[dash]]) {
+                that.unSubDash[dashKey][directorySources[dash]]()
+              }
+              that.unSubDash[dashKey][directorySources[dash]] = firebase.firestore().collection('directory')
+                .doc(directorySources[dash])
+                .onSnapshot(function(doc) {
+                if (doc) {
+                  that.theDashData[doc.id] = doc.data()
+                  that.set("theDashData", that.theDashData)
+                  var mergedData = that.mergeData(that.theDashData)
+                  that.set("item", {
+                    data: mergedData,
+                    alerts: alerts,
+                  })
+                  var display
+                  if (doc.display) {
+                    for (var showOn in doc.display) {
+                      if (doc.display[showOn] !== undefined) {
+                        that.set("display." + showOn, doc.display[showOn])
+                      }
+                    }
+                  }
+                  that.go = !that.go
+                } else {
+                  console.log("No such directorySource!")
+                }
+              })
+            }
+          } else {
+            newOne()
+          }
+        })
+      }
     }
   })
 </script>
