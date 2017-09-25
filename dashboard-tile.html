@@ -147,8 +147,10 @@
         </div>
       </paper-dialog-scrollable>
       <div class="buttons">
-        <paper-button dialog-confirm style="color:red" on-tap="delete">Delete</paper-button>
-        <paper-button dialog-confirm>Cancel</paper-button>
+        <template is="dom-if" if="[[dashRef]]">
+          <paper-button dialog-confirm style="color:red" on-tap="delete">Delete</paper-button>
+        </template>
+        <paper-button dialog-confirm on-tap="cancel">Cancel</paper-button>
         <paper-button dialog-confirm autofocus on-tap="saveEdited">Save</paper-button>
       </div>
     </paper-dialog>
