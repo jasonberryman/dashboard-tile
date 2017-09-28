@@ -195,6 +195,13 @@
       _display:{
         computed: "setDisplay(display,display.*)"
       },
+      go:{
+        value: 0,
+        notify: true,
+      },
+    },
+    cancel: function(){
+      this.set("go",!this.go)
     },
     setDisplay: function(displays){
       var atLeastOne = 0
